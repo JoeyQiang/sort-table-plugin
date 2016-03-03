@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="plugin.js" charset="utf-8"></script>
+  <script src="sort.js" charset="utf-8"></script>
+  <style>
+    .stacktable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .st-head-row {
+      padding-top: 1em;
+    }
+
+    .st-head-row.st-head-row-main {
+      font-size: 1.5em;
+      padding-top: 0;
+    }
+
+    .st-key {
+      width: 49%;
+      text-align: right;
+      padding-right: 1%;
+    }
+
+    .st-val {
+      width: 49%;
+      padding-left: 1%;
+    }
+    /* RESPONSIVE EXAMPLE */
+
+    .stacktable.large-only {
+      display: table;
+    }
+
+    .stacktable.small-only {
+      display: none;
+    }
+
+    .stacktable tr>td:first-child {
+      color: #2b409a;
+    }
+
+    .stacktable tr>td:nth-child(3) {
+      font-style: italic;
+    }
+
+    .stacktable tr>td:nth-child(4) {
+      font-style: italic;
+    }
+
+    .stacktable tr:nth-child(even) {
+      background-color: #DCDCDC;
+    }
+
+    .stacktable tr:first-child {
+      background-color: #fff;
+      font-size: 1.2em;
+    }
+
+    .stacktable th {
+      padding: 1.5em 1em;
+      text-align: left;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .stacktable td {
+      padding: 1em;
+    }
+
+    @media (min-width: 801px) {
+      .stacktable th:before {
+        position: absolute;
+        right: 2em;
+        top: 30px;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 8px solid #dcdcdc;
+      }
+      .stacktable th:after {
+        position: absolute;
+        right: 2em;
+        top: 40px;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 8px solid #dcdcdc;
+      }
+      .stacktable th.arrow-up:before {
+        border-bottom: 8px solid #7A80DD;
+      }
+      .stacktable th.arrow-down:after {
+        border-top: 8px solid #7A80DD;
+      }
+      .styled-select {
+        display: none;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .stacktable.large-only {
+        display: none;
+      }
+      .stacktable.small-only {
+        display: table;
+      }
+      .stacktable .st-head-row-main {
+        display: none;
+      }
+      .stacktable .st-key {
+        display: none;
+      }
+      .stacktable .st-val {
+        text-align: center;
+        padding: .5em 1.5em;
+      }
+      .stacktable th {
+        padding: 1em 1em;
+        text-align: center;
+        color: #2b409a;
+        font-weight: bold;
+      }
+      .stacktable tr:nth-child(odd),
+      .stacktable tr:nth-child(even) {
+        background-color: #fff;
+      }
+      .stacktable tr:nth-child(8n+2),
+      .stacktable tr:nth-child(8n+3),
+      .stacktable tr:nth-child(8n+4),
+      .stacktable tr:nth-child(8n+5) {
+        background-color: #eee;
+      }
+      .stacktable tr:nth-child(4n+4) {
+        font-style: italic;
+      }
+      .stacktable tr:nth-child(4n+5) {
+        font-style: italic;
+      }
+      .styled-select {
+        margin: 0 auto 10px;
+        height: 34px;
+        overflow: hidden;
+        background: #ddd;
+        border: 1px solid #eee;
+      }
+      .styled-select select {
+        background: transparent;
+        width: 100%;
+        padding: 5px;
+        line-height: 1;
+        border: 0;
+        border-radius: 0;
+        height: 34px;
+        /*-webkit-appearance: none;*/
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="styled-select">
+    <select name="sortingbar" id="sortingbar">
+      <option>Sort by...</option>
+      <option value="title">Title</option>
+      <option value="conference">Conference</option>
+      <option value="author">Author</option>
+      <option value="date">Date</option>
+    </select>
+  </div>
+
+  <table id="responsive-example-table" class="large-only" cellspacing="0">
+    <tbody>
+      <tr align="left">
+        <th width="35%" class="alp">Presentation Title</th>
+        <th width="35%" class="alp">Conference</th>
+        <th width="20%" class="alp">Author</th>
+        <th width="10%" class="num">Date</th>
+      </tr>
+
+      <tr>
+        <td>Aearning maps: Tools for formative assessment practice</td>
+        <td>Aansas State Department of Education Annual Conference</td>
+        <td>Aarvonen, M., Broaddus, A. & Ruhter, L.</td>
+        <td>Jan, 2014</td>
+      </tr>
+
+      <tr>
+        <td>Balidation of a mathematics learning map using Bayesian network analysis</td>
+        <td>Bsdfjsdklfsdn at the annual meeting of the National Council on Measurement in Education, Philadelphia, PA</td>
+        <td>Broaddus, A., Conrad, Z., Esen, A., & Pardos, Z.</td>
+        <td>Feb, 2014</td>
+      </tr>
+
+      <tr>
+        <td>Calidation of a mathematics learning map using Bayesian network analysis</td>
+        <td>Cresentation at the annual meeting of the National Council on Measurement in Education, Philadelphia, PA</td>
+        <td>Chasdf A., Conrad, Z., Esen, A., & Pardos, Z.</td>
+        <td>March, 2014</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+<script type="text/javascript">
+  (function($) {
+    $('#responsive-example-table').stacktable();
+    $('#responsive-example-table').sorttable();
+  })(jQuery);
+</script>
