@@ -42,17 +42,17 @@
       display: none;
     }
 
-    .stacktable tr>td:first-child {
+    /*.stacktable tr>td:first-child {
       color: #2b409a;
-    }
+    }*/
 
-    .stacktable tr>td:nth-child(3) {
+    /*.stacktable tr>td:nth-child(3) {
       font-style: italic;
     }
 
     .stacktable tr>td:nth-child(4) {
       font-style: italic;
-    }
+    }*/
 
     .stacktable tr:nth-child(even) {
       background-color: #DCDCDC;
@@ -171,47 +171,153 @@
 
 <body>
 
-  <div class="styled-select">
-    <select name="sortingbar" id="sortingbar">
-      <option>Sort by...</option>
-      <option value="title">Title</option>
-      <option value="conference">Conference</option>
-      <option value="author">Author</option>
-      <option value="date">Date</option>
-    </select>
-  </div>
+  <!-- <div class="styled-select"><select id="sortingbar" name="sortingbar"><option>Sort by...</option><option value="title">Title</option><option value="conference">Conference</option><option value="author">Author</option><option value="date">Date</option> </select></div> -->
 
-  <table id="responsive-example-table" class="large-only" cellspacing="0">
-    <tbody>
-      <tr align="left">
-        <th width="35%" class="alp">Presentation Title</th>
-        <th width="35%" class="alp">Conference</th>
-        <th width="20%" class="alp">Author</th>
-        <th width="10%" class="num">Date</th>
-      </tr>
+<table cellspacing="0" class="large-only" id="responsive-example-table">
+	<tbody>
+		<tr align="left">
+			<th class="alp" width="35%">Presentation Title</th>
+			<th class="alp" width="35%">Conference</th>
+			<th class="alp" width="20%">Author</th>
+			<th class="num" width="10%">Date</th>
+		</tr>
+		<tr>
+			<td>Learning maps: Tools for formative assessment practice</td>
+			<td>Kansas State Department of Education annual conference, Wichita, KS</td>
+			<td>Karvonen, M., Broaddus, A. &amp; Ruhter, L.</td>
+			<td>June, 2014</td>
+		</tr>
+		<tr>
+			<td>Validation of a mathematics learning map using Bayesian network analysis</td>
+			<td>National Council on Measurement in Education annual meeting, Philadelphia, PA</td>
+			<td>Broaddus, A., Conrad, Z., Esen, A., &amp; Pardos, Z.</td>
+			<td>April, 2014</td>
+		</tr>
+		<tr>
+			<td>Palidation of a mathematics learning map using Bayesian network analysis</td>
+			<td>National Council on Measurement in Education annual meeting, Philadelphia, PA</td>
+			<td>Broaddus, A., Conrad, Z., Esen, A., &amp; Pardos, Z.</td>
+			<td>April, 2014</td>
+		</tr>
+		<tr>
+			<td>Dynamic Learning Maps™ (DLM) and Accessibility</td>
+			<td>Kansas State Department of Education annual conference, Wichita, KS</td>
+			<td>Karvonen, M., Broaddus, A. &amp; Ruhter, L.</td>
+			<td>Nov, 2013</td>
+		</tr>
+		<tr>
+			<td>Policies and practices in support of the transition to next generation alternate assessments based on alternate achievement standards</td>
+			<td>National Conference on Student Assessment, New Orleans, LA</td>
+			<td>Karvonen, M., Hall, S., Gholson, M., Williams, L., Cagle, G., &amp; Wheeler, T.</td>
+			<td>June, 2014</td>
+		</tr>
+		<tr>
+			<td>Turning theory into reality: How the six state assessment consortia plans changed during development (and may change during implementation)</td>
+			<td>National Conference on Student Assessment, New Orleans, LA</td>
+			<td>Kingston, N.</td>
+			<td>June, 2014</td>
+		</tr>
+		<tr>
+			<td>School readiness: Lessons learned during DLM field testing</td>
+			<td>National Conference on Student Assessment, New Orleans, LA</td>
+			<td>Kingston, N., Karvonen, M., &amp; Studt, N.</td>
+			<td>June, 2014</td>
+		</tr>
+		<tr>
+			<td>Understanding differential item functioning with the general linear model</td>
+			<td>National Council on Measurement in Education annual meeting, Philadelphia, PA</td>
+			<td>Loughran, J., &amp; Skorupski, W.</td>
+			<td>April, 2014</td>
+		</tr>
+		<tr>
+			<td>The Dynamic Learning Maps™ Assessment: Supporting access to literacy for students with significant cognitive disabilities</td>
+			<td>International Reading Association annual meeting, Chicago, IL</td>
+			<td>Mark, C., &amp; Adams, L.</td>
+			<td>April, 2012</td>
+		</tr>
+		<tr>
+			<td>Moving beyond learning progressions to dynamic learning maps: A validation study</td>
+			<td>American Educational Research Association annual meeting, Philadelphia, PA</td>
+			<td>Romine, R. S., &amp; Schuster, J.</td>
+			<td>April, 2014</td>
+		</tr>
+		<tr>
+			<td>Multiple pathways to literacy: The Dynamic Learning Maps™ Alternate Assessment System</td>
+			<td>Council for Exceptional Children annual convention and expo, Denver, CO</td>
+			<td>Schuster, J. G., Clark, A. K., Mark, C. A., &amp; Shin, S.</td>
+			<td>April, 2012</td>
+		</tr>
+		<tr>
+			<td>Creating the Dynamic Learning Map™: Representing how concepts influence language development</td>
+			<td>Mental Lexicon conference, Montreal, Canada</td>
+			<td>Schuster, J. G., Clark. A., Mark, C., &amp; Shin, S.</td>
+			<td>Oct, 2012</td>
+		</tr>
+		<tr>
+			<td>DLM-AAS: A new generation assessment for students with significant cognitive disabilities</td>
+			<td>TASH conference, Atlanta, GA</td>
+			<td>Sheinker, A., &amp; Mark, C.</td>
+			<td>Dec., 2011</td>
+		</tr>
+		<tr>
+			<td>The Alternate Assessment Consortia (DLM &amp; NCSC) for students with significant cognitive disabilities: Progress to date</td>
+			<td>Council for Exceptional Children annual convention and expo, San Antonio, TX</td>
+			<td>Sheinker, A., &amp; Thurlow, M.</td>
+			<td>April, 2013</td>
+		</tr>
+		<tr>
+			<td>Program chair invited session: Next generation alternate assessments for students with significant cognitive disabilities</td>
+			<td>Council for Exceptional Children annual convention and expo, Denver, CO</td>
+			<td>Sheinker, A., Whetstone, P. J., &amp; Thurlow, M.</td>
+			<td>May, 2012</td>
+		</tr>
+		<tr>
+			<td>Creating technology enhanced items using the Dynamic Learning Map™: A process for ELA</td>
+			<td>International Reading Association 58th annual convention, San Antonio, TX</td>
+			<td>Shipman, M., Whetstone, P., &amp; Clark, A.</td>
+			<td>April, 2013</td>
+		</tr>
+		<tr>
+			<td>Mapping the way: Using a learning map to analyze assessment data and guide mathematics instruction</td>
+			<td>National Council of Supervisors of Mathematics annual conference, Denver, CO</td>
+			<td>Thomas, K.</td>
+			<td>April, 2013</td>
+		</tr>
+		<tr>
+			<td>Learning maps: A comprehensive structure for assessment</td>
+			<td>National Council on Measurement in Education annual meeting, Vancouver, Canada</td>
+			<td>Thomas, K., &amp; Mark, C.</td>
+			<td>April, 2012</td>
+		</tr>
+		<tr>
+			<td>Dynamic Learning Maps™ Alternate Assessment: Process and progress</td>
+			<td>National Conference on Student Assessment annual meeting, Minneapolis, MN</td>
+			<td>Thomas, K., Mark, C., &amp; Crawford, J.</td>
+			<td>April, 2012</td>
+		</tr>
+		<tr>
+			<td>The road less traveled for alternate assessments: Mapping multiple learning pathways</td>
+			<td>Council for Exceptional Children annual convention and expo, Denver, CO</td>
+			<td>Thomas, K., Sheinker, A., &amp; Joannou, J.</td>
+			<td>May, 2012</td>
+		</tr>
+		<tr>
+			<td>Assessment of students with significant cognitive disabilities: Dynamic Learning Maps™ (DLM™) and National Center and State Collaborative (NCSC)</td>
+			<td>National Council on Measurement in Education annual meeting, Vancouver, Canada</td>
+			<td>Thurlow, M. L., Sheinker, A., Quenemoen, R. Q., &amp; Kingston, N.</td>
+			<td>April, 2012</td>
+		</tr>
+		<tr>
+			<td>The next generation in alternate assessment</td>
+			<td>Council for Exceptional Children annual convention and expo, Denver, CO</td>
+			<td>Tindal, G., Sheinker, A., Thurlow, M., &amp; Zigmond, N.</td>
+			<td>May, 2012</td>
+		</tr>
+	</tbody>
+</table>
 
-      <tr>
-        <td>Aearning maps: Tools for formative assessment practice</td>
-        <td>Aansas State Department of Education Annual Conference</td>
-        <td>Aarvonen, M., Broaddus, A. & Ruhter, L.</td>
-        <td>Jan, 2014</td>
-      </tr>
 
-      <tr>
-        <td>Balidation of a mathematics learning map using Bayesian network analysis</td>
-        <td>Bsdfjsdklfsdn at the annual meeting of the National Council on Measurement in Education, Philadelphia, PA</td>
-        <td>Broaddus, A., Conrad, Z., Esen, A., & Pardos, Z.</td>
-        <td>Feb, 2014</td>
-      </tr>
 
-      <tr>
-        <td>Calidation of a mathematics learning map using Bayesian network analysis</td>
-        <td>Cresentation at the annual meeting of the National Council on Measurement in Education, Philadelphia, PA</td>
-        <td>Chasdf A., Conrad, Z., Esen, A., & Pardos, Z.</td>
-        <td>March, 2014</td>
-      </tr>
-    </tbody>
-  </table>
 </body>
 
 </html>

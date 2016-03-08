@@ -11,42 +11,33 @@
 
 
     if ($(window).width() > 800) {
-      //change arrowshape
-      $header.bind('click', function() {
-        if ($(this).hasClass("arrow-up")) {
-          $(this).removeClass('arrow-up').addClass('arrow-down')
-            .siblings().removeClass('arrow-up arrow-down');
-        } else {
-          $(this).removeClass('arrow-down').addClass('arrow-up')
-            .siblings().removeClass('arrow-up arrow-down');
-        }
-      });
-
 
       // sort alphabet
       $header_alp.bind('click', function() {
         // preprocess
+        changeArrow($(this));
         var colIndex = $(this).index();
         var vals = traverse($table, colIndex);
-        vals = sortAlphabet($table, vals);
         if ($(this).hasClass('arrow-up')) {
-          asac($table, vals);
+          vals = sortAlphabet($table, vals, true);
         } else {
-          desc($table, vals);
+          vals = sortAlphabet($table, vals, false);
         }
+        relayout($table, vals);
       });
       // sort date
       $header_num.bind('click', function() {
-        // console.log('num');
         // preprocess
+        changeArrow($(this));
         var colIndex = $(this).index();
         var vals = traverse($table, colIndex);
-        vals = sortDate($table, vals);
         if ($(this).hasClass('arrow-up')) {
-          asac($table, vals);
+          vals = sortDate($table, vals, true);
+
         } else {
-          desc($table, vals);
+          vals = sortDate($table, vals, false);
         }
+        relayout($table, vals);
       });
     } else {
 
@@ -84,6 +75,16 @@
 
 
   // Fuctions
+  // arrow change
+  function changeArrow($obj) {
+    if ($obj.hasClass("arrow-up")) {
+      $obj.removeClass('arrow-up').addClass('arrow-down')
+        .siblings().removeClass('arrow-up arrow-down');
+    } else {
+      $obj.removeClass('arrow-down').addClass('arrow-up')
+        .siblings().removeClass('arrow-up arrow-down');
+    }
+  }
 
   // sort for mobile version
   function sortMobile(value, $table, vals, m, q, sort, date) {
@@ -146,12 +147,11 @@
       vals.push(val);
 
     });
-
     return vals;
   }
 
   // sort by alphabet
-  function sortAlphabet($table, vals) {
+  function sortAlphabet($table, vals, asac) {
 
     var length = vals.length;
 
@@ -160,18 +160,24 @@
       for (var j = i + 1; j < length; j++) {
         var val1 = vals[i].value;
         var val2 = vals[j].value;
-        if (val1 < val2) {
+
+        if (asac == true && val1 >= val2) {
+          var temp = vals[i];
+          vals[i] = vals[j];
+          vals[j] = temp;
+        } else if (asac == false && val1 < val2) {
           var temp = vals[i];
           vals[i] = vals[j];
           vals[j] = temp;
         }
+
       }
     }
     return vals;
   }
 
   // sort by date
-  function sortDate($table, vals) {
+  function sortDate($table, vals, asac) {
 
     var months = {
       JAN: 0,
@@ -185,24 +191,35 @@
       SEP: 8,
       OCT: 9,
       NOV: 10,
-      DEC: 12
+      DEC: 11
     };
 
     var length = vals.length;
 
     for (var i = 0; i < length - 1; i++) {
 
-      var date1 = vals[i].value.split(','),
-        month1 = $.trim(date1[0]),
-        year1 = parseInt($.trim(date1[1]));
-
       for (var j = i + 1; j < length; j++) {
 
-        var date2 = vals[j].value.split(','),
-          month2 = $.trim(date2[0]),
-          year2 = parseInt($.trim(date2[1]));
+      var date1 = vals[i].value.split(','),
+          date2 = vals[j].value.split(','),
+          month1 = months[$.trim(date1[0])],
+          month2 = months[$.trim(date2[0])],
+          year1 = parseInt($.trim(date1[1])),
+          year2 = parseInt($.trim(date2[1])),
+          flag = '';
 
-        if (year1 < year2 || (year1 == year2 && months[month1] < months[month2])) {
+        if (year1 > year2 || (year1 == year2 && month1 >= month2)) {
+            flag = 'asac';
+        }
+        else{
+            flag = 'desc';
+        }
+
+        if (asac == true && flag == 'asac') {
+          var temp = vals[i];
+          vals[i] = vals[j];
+          vals[j] = temp;
+        } else if (asac == false && flag == 'desc') {
           var temp = vals[i];
           vals[i] = vals[j];
           vals[j] = temp;
@@ -213,29 +230,26 @@
     }
     return vals;
   }
-  // sort asac
-  function asac($table, vals) {
+  // relayout table
+  function relayout($table, vals) {
+
     var length = vals.length;
-    for (var i = 0; i < length; i++) {
+    var str = '';
+
+    for(var i=0; i<length; i++){
       var index = vals[i].rowIndex;
-      var num = (index + i < length) ? (index + i) : (length);
-      if (i == 1 && vals[0].rowIndex == 1) {
-        num -= 1;
-      }
-      $table.find('tr').eq(0).after($table.find('tr').eq(num));
+      var td1 = $table.find('tr').eq(index).find('td').eq(0).text();
+      var td2 = $table.find('tr').eq(index).find('td').eq(1).text();
+      var td3 = $table.find('tr').eq(index).find('td').eq(2).text();
+      var td4 = $table.find('tr').eq(index).find('td').eq(3).text();
+
+      str += '<tr><td>'+td1+'</td><td>'
+                +td2+'</td><td>'
+                +td3+'</td><td>'
+                +td4+'</td></tr>';
+
     }
-  }
-  // sort desc
-  function desc($table, vals) {
-    var length = vals.length;
-    for (var i = 0; i < length; i++) {
-      var index = vals[i].rowIndex;
-      var num = (index - i > 1) ? (index - i) : 1;
-      if (i == 1 && vals[0].rowIndex == length) {
-        num += 1;
-      }
-      $table.append($table.find('tr').eq(num));
-    }
+    $table.find("tr:gt(0)").remove().end().append(str);
   }
 
 })(jQuery);
